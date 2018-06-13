@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Jua');
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.score-container {
+  font-family: 'Jua', sans-serif;
+  text-align: center;
+  display: grid;
+  margin: auto;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 40px;
+  padding: 10px;
+}
+
+.score-board {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.highestscore-board {
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  grid-gap: 10px;
+  padding: 10px;
+  background-color: #ec7263;
+}
+
+.grid-row {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: auto auto auto auto;
+}
+
+.grid-cell {
+  display: inline;
+  background-color: rgba(254, 190, 126, 1);
+  color: rgb(167, 82, 101);
+  height: 35px;
+  width: 35px;
+  padding: 20px 20px;
+  font-size: 30px;
+  font-family: 'Jua', sans-serif;
+  font-weight: bold;
+}
