@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Jua');
+
 .container {
   display: flex;
   flex-direction: column;
@@ -12,20 +13,42 @@
   font-family: 'Jua', sans-serif;
   text-align: center;
   display: grid;
-  margin: auto;
-  grid-template-columns: auto auto auto auto;
+  margin: 10px;
+  grid-template-columns: auto auto auto;
   grid-gap: 40px;
-  padding: 10px;
 }
 
 .score-board {
   grid-column-start: 1;
   grid-column-end: 3;
+  color: #a9c52f;
 }
 
 .highestscore-board {
   grid-column-start: 3;
-  grid-column-end: 5;
+  grid-column-end: 4;
+  color: #f26d5b;
+}
+
+.bonus-board {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  color: #5fb9b0;
+}
+
+.game-control {
+  font-family: 'Jua', sans-serif;
+  background-color: #ffeed3;
+  border: none;
+  color: #f4722b;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
 }
 
 .grid-container {
