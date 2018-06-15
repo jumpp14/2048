@@ -8,6 +8,8 @@ var score = 0;
 var highestscore = localStorage.getItem('highestscore') || 0;
 document.getElementsByClassName('highestscore-board')[0].getElementsByClassName('highest-score')[0].innerHTML = highestscore;
 
+var leftSaves = 0;
+var leftChances = leftSaves;
 
 function gridEqual(grid1, grid2){
 	for(var i = 0; i < 4; i++){
@@ -85,8 +87,12 @@ function drawCells(){
 		localStorage.setItem('highestscore', tempScore);
 		document.getElementsByClassName('highestscore-board')[0].getElementsByClassName('highest-score')[0].innerHTML = score;
 	}
+	document.getElementsByClassName('bonus-board')[0].innerHTML = "<p>you can destory </p><p>" + parseInt(leftChances) + " cells</p>";
 	if(isGameOver(grid)){
-		console.log("game over");
+		document.getElementsByClassName("game-control")[0].innerHTML = "Game Over <br>Try again?";
+	}
+	else{
+		document.getElementsByClassName("game-control")[0].innerHTML = "New Game";
 	}
 }
 
@@ -143,7 +149,11 @@ function combineLeft(row){
 			if(row[j] == row[i]){
 				newRow.push(2 * row[i]);
 				score += 2 * row[i];
-				i += 2
+				i += 2;
+				if(Math.floor(score / 1000) > leftSaves){
+					leftSaves += 1;
+				}
+				leftChances = leftSaves;
 			} 
 			else{
 				newRow.push(row[i]);
@@ -258,11 +268,7 @@ $(document).keydown(function(e) {
     	break;
 
     	case 38:
-    	// upMove.play(); 
-    	// setTimeout(clearGrid,1000);
-    	// setTimeout(redrawGrid,1000);
     	grid = upOperation(grid);
-    	// setTimeout(drawCells,1010);
     	drawCells();
     	break;
 
@@ -285,47 +291,33 @@ $(document).keydown(function(e) {
 	e.preventDefault(); 
 });
 
-// function upAnimation(grid){
-// 	var target = document.getElementById('13');
-// 	var pos = 0;
-//   	var id = setInterval(frame, 5);
-//   	function frame() {
-//     	if (pos == 350) {
-//       	clearInterval(id);
-//     	} else {
-//       		pos++; 
-//       	elem.style.top = pos + 'px'; 
-//       	elem.style.left = pos + 'px'; 
-//     	}
-//   	}
-
-// }
-var upMove = anime({
-  targets: 'div.row4', 
-  translateY: '-340%',
-  autoplay: false,
-  targets: 'div.row3',
-  translateY: '-240%',
-  autoplay: false
+$(".grid-cell").dblclick(function(event) {
+    if(leftChances > 0){
+    	leftChances -= 1;
+    	var cellID = $(this).attr('id');
+    	var i = Number(cellID[4]);
+    	var j = Number(cellID[5]);
+    	grid[i][j] = "0";
+    	drawCells();
+    	$(this).effect( "shake" );
+    	$(this).animate({
+    		backgroundColor: "#febe7e",
+    	}, 1000);
+    }
 });
 
+$(".game-control").click(function(){
+	startOver(grid);
+});
 
-function clearGrid(){
-	var rows = document.getElementsByClassName('grid-row');
-	for(var i = 0; i < 4; i++){
-		while (rows[i].hasChildNodes()) {
-			rows[i].removeChild(rows[i].lastChild);
-		}
-	}
-}
-
-function redrawGrid(){
-	var rows = document.getElementsByClassName('grid-row');
+function startOver(grid){
 	for(var i = 0; i < 4; i++){
 		for(var j = 0; j < 4; j++){
-			var cellNode = document.createElement("div");
-			cellNode.classList.add("grid-cell", `row${i+1}` );
-			rows[i].appendChild(cellNode);
+			grid[i][j] = 0;
 		}
 	}
+	drawCells();
+	addNumber(grid);
+	addNumber(grid);
+	drawCells();
 }
