@@ -303,7 +303,7 @@ $(".grid-cell").dblclick(function(event) {
     	score -= grid[i][j];
     	grid[i][j] = 0;
     	drawCells();
-    	$(this).effect( "shake" );
+    	$(this).effect("shake");
     	$(this).animate({
     		backgroundColor: "#febe7e",
     	}, 1000);
@@ -316,6 +316,8 @@ $(".game-control").click(function(){
 
 function startOver(grid){
 	score = 0;
+	leftSaves = 0;
+	leftChances = leftSaves;
 	for(var i = 0; i < 4; i++){
 		for(var j = 0; j < 4; j++){
 			grid[i][j] = 0;
