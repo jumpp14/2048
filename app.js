@@ -320,8 +320,5 @@ function startOver(grid){
 	addNumber(grid);
 	addNumber(grid);
 	drawCells();
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> be5f270a180bce0278e19e660963150b2c57f2c5
+
