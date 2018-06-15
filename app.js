@@ -89,7 +89,6 @@ function drawCells(){
 	}
 	document.getElementsByClassName('bonus-board')[0].innerHTML = "<p>you can destory </p><p>" + parseInt(leftChances) + " cells</p>";
 	if(isGameOver(grid)){
-		console.log("game over");
 		document.getElementsByClassName("game-control")[0].innerHTML = "Game Over <br>Try again?";
 	}
 	else{
@@ -309,7 +308,6 @@ $(".grid-cell").dblclick(function(event) {
 
 $(".game-control").click(function(){
 	startOver(grid);
-	console.log("clicked");
 });
 
 function startOver(grid){
