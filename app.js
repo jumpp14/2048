@@ -152,8 +152,8 @@ function combineLeft(row){
 				i += 2;
 				if(Math.floor(score / 1000) > leftSaves){
 					leftSaves += 1;
+					leftChances += 1;
 				}
-				leftChances = leftSaves;
 			} 
 			else{
 				newRow.push(row[i]);
@@ -237,6 +237,9 @@ function downOperation(grid){
 }
 
 function isGameOver(grid){
+	if(leftChances > 0){
+		return false
+	}
 	for(var i = 0; i < 4; i++){
 		for(var j = 0; j < 4; j++){
 			if(grid[i][j] == 0){
@@ -297,7 +300,8 @@ $(".grid-cell").dblclick(function(event) {
     	var cellID = $(this).attr('id');
     	var i = Number(cellID[4]);
     	var j = Number(cellID[5]);
-    	grid[i][j] = "0";
+    	score -= grid[i][j];
+    	grid[i][j] = 0;
     	drawCells();
     	$(this).effect( "shake" );
     	$(this).animate({
@@ -311,6 +315,7 @@ $(".game-control").click(function(){
 });
 
 function startOver(grid){
+	score = 0;
 	for(var i = 0; i < 4; i++){
 		for(var j = 0; j < 4; j++){
 			grid[i][j] = 0;
