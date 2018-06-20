@@ -304,9 +304,6 @@ $(".grid-cell").dblclick(function(event) {
     	grid[i][j] = 0;
     	drawCells();
     	$(this).effect("shake");
-    	$(this).animate({
-    		backgroundColor: "#febe7e",
-    	}, 1000);
     }
 });
 
