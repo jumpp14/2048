@@ -66,12 +66,15 @@
 }
 
 .grid-cell {
+  padding: 0;
+  vertical-align:middle;
   display: inline;
   background-color: rgba(254, 190, 126, 1);
   color: rgb(167, 82, 101);
   height: 35px;
-  width: 35px;
-  padding: 20px 20px;
+  width: 75px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   font-size: 30px;
   font-family: 'Jua', sans-serif;
   font-weight: bold;
